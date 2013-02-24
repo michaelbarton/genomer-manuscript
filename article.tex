@@ -130,16 +130,16 @@ libraries should be used.
 
 Genomer uses these two libraries to create a plugin system where third-party
 software can be written and included. Plugin creators need only to prefix the
-name of their plugin with `genomer-plugin-' and upload this to rubygems.org or
-make the plugin available as a public git repository. A plugin is specified
-within the project in a file named `Gemfile.' The `bundle update` command will
-then automatically download and install the required plugins.
+name of their plugin with \verb+genomer-plugin-+ and upload this to
+rubygems.org or make the plugin available as a public git repository. A plugin
+is specified within the project in a file named `Gemfile.' The \verb+bundle update+
+command will then automatically download and install the required plugins.
 
 Genomer is implemented as a command line tool and tested on both Mac OS X and
 Linux systems. The latest version of genomer can installed from the Rubygems
-package management system with the command `gem install genomer`. Genomer is
-then invoked on the command line with the command `genomer`. Genomer provides
-extensive documentation via man pages and on the genomer website at
+package management system with the command \verb+gem install genomer+. Genomer
+is then invoked on the command line with the command \verb+genomer+. Genomer
+provides extensive documentation via man pages and on the genomer website at
 http://next.gs.
 
 \section*{Results and Discussion}
@@ -158,9 +158,9 @@ zsh. Command line tools are simple to automate using scripting, allowing
 reproducible genome finishing and sharing genome projects between researchers.
 For instance, during our microbial genome project we automated Genomer using
 GNU Make build files, allowing the finishing steps to be repeated automatically
-using the `make` command. Additionally we stored each version of the GNU Make
-build file with git \cite{git-scm} to track changes to the project and to allow
-errors to be reverted from earlier versions. Example build files from our
+using the \verb+make+ command. Additionally we stored each version of the GNU
+Make build file with git \cite{git-scm} to track changes to the project and to
+allow errors to be reverted from earlier versions. Example build files from our
 genome projects can be found on GitHub for a simple plasmid
 \cite{plasmid-github} and more complex \cite{genome-github} sequence.
 
@@ -169,11 +169,11 @@ provides no functionality itself, but rather serves to make the functionality
 of plugins available for use at the command line. For example to validate the
 correctness of genome annotations, the genomer-plugin-validate plugin should be
 installed which then allows the required functionality to be through the
-`genomer` command. Presently, we have developed and released three plugins:
-viewing a genome sequence in common bioinformatics file formats, validating the
-correctness of genome annotations for common errors, and provide summaries of a
-genome sequence. Each of these plugins are available on GitHub and their use
-described is in the documentation at http://next.gs.
+\verb+genomer+ command. Presently, we have developed and released three
+plugins: viewing a genome sequence in common bioinformatics file formats,
+validating the correctness of genome annotations for common errors, and provide
+summaries of a genome sequence. Each of these plugins are available on GitHub
+and their use described is in the documentation at http://next.gs.
 
 The Genomer plugin system was built using the existing Ruby package management
 system: RubyGems and Bundler. This allows plugins to be automatically installed
@@ -237,14 +237,14 @@ sequencing, comparison to reference genomes, or PCR amplification can be used
 to estimate the positions of observed contigs in the true genome sequence.}
   
 \item{The genomer-plugin-view plugin is then added to the Gemfile in the root
-of the project directory. The command `bundle update`, run in the project root,
-will then download and install this plugin making it available for use in the
-Genomer project.}
+of the project directory. The command \verb+bundle update+, run in the project
+root, will then download and install this plugin making it available for use in
+the Genomer project.}
   
 \item{Different views can then be generated from the scaffold using the
-`genomer view` command. For instance, a GFF3 file of the scaffolded annotations
-may be generated. Should the originating contig annotations or the genome
-scaffold be changed then rerunning the `genomer view` command will
+\verb+genomer view+ command. For instance, a GFF3 file of the scaffolded
+annotations may be generated. Should the originating contig annotations or the
+genome scaffold be changed then rerunning the \verb+genomer view+ command will
 correspondingly update the annotation coordinates for the scaffold.}
 
 \end{enumerate}
