@@ -69,7 +69,7 @@ process raw sequence reads into a database-deposited genome sequence. Here we
 describe ``Genomer,'' a tool that simplifies the manual tasks of finishing and
 uploading a genome sequence to a database. Genomer can format a genome scaffold
 into the common files required to submit to GenBank. Genomer simplifies editing
-a genome scaffold by allowing an human-readable YAML format file to be edited
+a genome scaffold by allowing a human-readable YAML format file to be edited
 instead of large sequence files. Genomer is written as a command line tool and
 is an effort to make the manual, and increasingly common, process of genome
 scaffolding more robust and reproducible. Extensive documentation and video
@@ -91,7 +91,7 @@ still improve upon these automated approaches.
 Manually editing a genome sequence or annotation is a non-trivial problem
 requiring significant effort on a researcher's part. The large size of FASTA
 sequence files or general feature format (GFF) annotation files makes changing
-these files in a text editor difficult. Tasks such as organising project files,
+these in a text editor difficult. Tasks such as organising project files,
 adding additional sequences to an assembly, updating incorrect annotations or
 preparing files for database deposition all divert effort from the main goal of
 analysing a genome. As a result genome projects have a steep learning curve for
@@ -101,11 +101,11 @@ requiring effort for experienced researchers.
 We anticipate these problems have resulted in individual groups independently
 producing in-house programming scripts to automate repetitive tasks. An example
 of such tasks include finding protein names that do not match a convention of
-three lower case characters followed by one upper case character (abcD). This
-is manually laborious but simple to automate computationally. Individual
+three lower case characters followed by one upper case character (abcD). Such
+tasks are manually laborious but simple to automate computationally. Individual
 research groups producing their own scripts for such tasks however leads to a
 repetition of effort. In contrast open-source projects can lead to a pooling of
-community efforts resulting in a higher standard of software and preventing
+community effort resulting in a higher standard of software and preventing
 \cite{ince2012}.
 
 During the process of sequencing several \emph{Pseudomonas fluorescens} strains
@@ -114,7 +114,7 @@ common steps in a genome project. Several graphical user interface tools are
 available to work with genome projects \cite{tanaka2006, wilkinson2002,
 lopez2011, carver2012, gordon2003}. Genomer instead provides a simple, command
 line interface for genome finishing allowing scriptable automation and
-reproducible results. We have open-sourced this tool under and MIT license and
+reproducible results. We have open-sourced this tool under the MIT license and
 here we describe its application for simplifying steps in a microbial genome
 project.
 
@@ -132,26 +132,26 @@ Genomer uses these two libraries to create a plugin system where third-party
 software can be written and included. Plugin creators need only to prefix the
 name of their plugin with \verb+genomer-plugin-+ and upload this to
 rubygems.org or make the plugin available as a public git repository. A plugin
-is specified within the project in a file named `Gemfile.' The \verb+bundle update+
-command will then automatically download and install the required plugins.
+is specified within a Genomer project in a file named `Gemfile.' The
+\verb+bundle update+ command will then automatically download and install the
+required plugins.
 
 Genomer is implemented as a command line tool and tested on both Mac OS X and
 Linux systems. The latest version of genomer can installed from the Rubygems
 package management system with the command \verb+gem install genomer+. Genomer
-is then invoked on the command line with the command \verb+genomer+. Genomer
-provides extensive documentation via man pages and on the genomer website at
-http://next.gs.
+is based on our previously described ``scaffolder'' software and is invoked on
+the command line with the command \verb+genomer+. Genomer provides extensive
+documentation via man pages and on the genomer website at http://next.gs.
 
 \section*{Results and Discussion}
 
-Genomer was developed during our \emph{P. fluorescens} genome projects
-\cite{barton2012} to automate and simplify the manual steps required when
-finishing a microbial genome. Genomer includes functions to simplify the
-following: updating and modifying a genome sequence, editing genome
-annotations, and preparing the required files to submit a draft or complete
-genome to a sequence database such as GenBank. Genomer is also designed to
-allow researchers to add their own functionality to a genome project through
-third-party plugins.
+Genomer was developed during our \emph{P. fluorescens} genome projects to
+automate and simplify the manual steps required when finishing a microbial
+genome. Genomer includes functions to simplify the following: updating and
+modifying a genome sequence, editing genome annotations, and preparing the
+required files to submit a draft or complete genome to a sequence database such
+as GenBank. Genomer is also designed to allow researchers to add their own
+functionality to a genome project through third-party plugins.
 
 This software was written for the command-line to use in shells such as bash or
 zsh. Command line tools are simple to automate using scripting, allowing
@@ -162,7 +162,7 @@ using the \verb+make+ command. Additionally we stored each version of the GNU
 Make build file with git \cite{git-scm} to track changes to the project and to
 allow errors to be reverted from earlier versions. Example build files from our
 genome projects can be found on GitHub for a simple plasmid
-\cite{plasmid-github} and more complex \cite{genome-github} sequence.
+\cite{plasmid-github} and more complex genome \cite{genome-github} sequence.
 
 We divided this tool into modular parts each called a `plugin.' Genomer
 provides no functionality itself, but rather serves to make the functionality
@@ -184,14 +184,13 @@ allows each plugin to be developed on different release schedules without
 requiring Genomer itself to be updated, thereby providing a stable interface.
 Each Genomer plugin can be locked to specific versions to prevent changes in
 functionality between different plugin versions. This addresses situations
-whereby backwards incompatible software changes break an existing genomics when
-a recent version is available.
+whereby backwards incompatible software changes can break an existing project's
+workflow.
 
 We have released Genomer as open source on GitHub \cite{genomer-github} and
 have prepared documentation and video tutorials at http://next.gs. As we have
 used this tool extensively to simplify our own genome projects we believe
-genomer may also be useful to others in the field. A practice described as
-``eating your own dog food'' \cite{harrison2006}. We will illustrate the
+genomer may also be useful to others in the field. We will illustrate the
 possible usefulness of genomer with two use cases: updating the annotations of
 a genome scaffold during the finishing process, and preparing genome files for
 submission to GenBank.
@@ -265,7 +264,7 @@ containing the individual contig sequences and `a golden path' (AGP)
 \cite{agp-spec} file which describes the placement and direction of constituent
 contigs in the draft genome sequence. The requirements to generate these
 specific files can be time-consuming to complete and difficult to understand
-for researchers new to field. We therefore Genomer during our own genome
+for researchers new to field. We used Genomer extensively during our own genome
 projects to simplify and automate this process.
 
 The genomer-view-plugin can be used to generate for submission to GenBank:
@@ -276,13 +275,13 @@ contigs in the scaffold. Additional options may also be used to add a prefix to
 gene annotation IDs, or begin locus ID numbering at the origin of the sequence,
 thereby simplifying the process of creating the required files for submission.
 
-Genomer does not produce the .asn which must be submitted to GenBank, instead
-the generated files are used as the input for the tbl2asn or sequin tools. We
-emphasise that the purpose of Genomer is not to reinvent the functionality
-already provided by current NCBI resources, but instead to simplify the process
-of producing the required inputs. Our example \emph{P. fluorescens} GNU Make
-file [genome][] illustrates how Genomer may be combined with tbl2asn to produce
-the required .asn file for submission.
+Genomer does not produce the .asn file which must be submitted to GenBank,
+instead the generated files are used as the input for the tbl2asn or sequin
+tools. We emphasise that the purpose of Genomer is not to reinvent the
+functionality already provided by current NCBI resources, but instead to
+simplify the process of producing the required inputs. Our example \emph{P.
+fluorescens} GNU Make file \cite{genome-github} illustrates how Genomer may be
+combined with tbl2asn to produce the required .asn file for submission.
 
 \subsection*{Summary}
 
