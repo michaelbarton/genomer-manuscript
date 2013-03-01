@@ -68,25 +68,26 @@ steep learning curve in the subsequent computational steps to required to
 process raw sequence reads into a database-deposited genome sequence. Here we
 describe ``Genomer,'' a tool that simplifies the manual tasks of finishing and
 uploading a genome sequence to a database. Genomer can format a genome scaffold
-into the common files required to submit to GenBank. Genomer simplifies editing
-a genome scaffold by allowing a human-readable YAML format file to be edited
-instead of large sequence files. Genomer is written as a command line tool and
-is an effort to make the manual, and increasingly common, process of genome
-scaffolding more robust and reproducible. Extensive documentation and video
-tutorials are available at http://next.gs.
+into the common files required for submission to GenBank. Genomer simplifies
+editing a genome scaffold by allowing a human-readable YAML format file to be
+edited instead of large sequence files. Genomer is written as a command line
+tool and is an effort to make the manual, and increasingly common, process of
+genome scaffolding more robust and reproducible. Extensive documentation and
+video tutorials are available at http://next.gs.
 
 \section*{Introduction}
 
 The decreasing costs and increasing diversity of high-throughput sequencing
-methods is making genome analysis a common method to tackle outstanding
+methods is making genome analysis a common method to tackle unresolved
 questions in microbiology \cite{loman2012b}. Sequencing can produce
 $10e^{6}$-$10e^{10}$ short nucleotide reads, which must be assembled into
 larger contigs then scaffolded into larger megabase fragments or complete
 chromosomes. These larger DNA sequences are then annotated with genomic
-features such as protein-coding genes. Each of these steps can provide
-imperfect results and remains the subject of active research
-\cite{earl2011,quail2012,beckloff2012}, and manual curation by a researcher may
-still improve upon these automated approaches.
+features such as protein-coding genes. Each of these required steps can however
+produce imperfect results and remains the subject of active research
+\cite{earl2011,quail2012,beckloff2012}. Therefore manual curation of a genome
+sequence and corresponding annotations may still improve upon the results of
+automated methods.
 
 Manually editing a genome sequence or annotation is a non-trivial problem
 requiring significant effort on a researcher's part. The large size of FASTA
@@ -106,11 +107,11 @@ tasks are manually laborious but simple to automate computationally. Individual
 research groups producing their own scripts for such tasks however leads to a
 repetition of effort. In contrast open-source projects can lead to a pooling of
 community effort resulting in a higher standard of software and preventing
-\cite{ince2012}.
+reinvention of the same code \cite{ince2012}.
 
 During the process of sequencing several \emph{Pseudomonas fluorescens} strains
 we developed a tool, called ``Genomer'', to ease and simplify many of the
-common steps in a genome project. Several graphical user interface tools are
+common steps in our genome project. Several graphical user interface tools are
 available to work with genome projects \cite{tanaka2006, wilkinson2002,
 lopez2011, carver2012, gordon2003}. Genomer instead provides a simple, command
 line interface for genome finishing allowing scriptable automation and
@@ -141,7 +142,8 @@ Linux systems. The latest version of genomer can installed from the Rubygems
 package management system with the command \verb+gem install genomer+. Genomer
 is based on our previously described ``scaffolder'' software and is invoked on
 the command line with the command \verb+genomer+. Genomer provides extensive
-documentation via man pages and on the genomer website at http://next.gs.
+documentation via UNIX manual pages and on the genomer website at
+http://next.gs.
 
 \section*{Results and Discussion}
 
@@ -162,7 +164,7 @@ using the \verb+make+ command. Additionally we stored each version of the GNU
 Make build file with git \cite{git-scm} to track changes to the project and to
 allow errors to be reverted from earlier versions. Example build files from our
 genome projects can be found on GitHub for a simple plasmid
-\cite{plasmid-github} and more complex genome \cite{genome-github} sequence.
+\cite{plasmid-github} and a more complex genome \cite{genome-github} sequence.
 
 We divided this tool into modular parts each called a `plugin.' Genomer
 provides no functionality itself, but rather serves to make the functionality
