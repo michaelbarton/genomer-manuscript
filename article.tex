@@ -149,11 +149,36 @@ http://next.gs.
 
 Genomer was developed during our \emph{P. fluorescens} genome projects to
 automate and simplify the manual steps required when finishing a microbial
-genome. Genomer includes functions to simplify the following: updating and
-modifying a genome sequence, editing genome annotations, and preparing the
-required files to submit a draft or complete genome to a sequence database such
-as GenBank. Genomer is also designed to allow researchers to add their own
-functionality to a genome project through third-party plugins.
+genome. Genomer provides the following functionality to facilitate this:
+
+\begin{description} 
+
+  \item[Simple editting of a draft genome sequence.]{Genomer is built on the
+  existing Scaffolder \cite{barton2012} file format for assembling a draft
+  genome sequence. This YAML \cite{yaml} format simplifies the process of
+  re-organising and trimming contigs in a draft genome without having to edit
+  large nucleotide sequences manually.}
+
+  \item[Simple mapping of annotations to the generated draft sequence.]{Genomer
+  maps the coordinates of annotations on individual to repsective position in
+  the draft genome sequence. This allows the scaffold file to be continuously
+  improved even when already annotated. For instance, additional PCR sequences
+  can be used to close gaps and improve the genome sequence, without requiring
+  reannotation or manually updating all annotation coordinates.}
+
+  \item[Generation of files for submission to GenBank.]{Submitting a genome
+  sequence to GenBank database requires several specific files to be prepared.
+  These may include a FASTA file of the draft sequence, a table of annotations,
+  a FASTA file containing the individual contig sequences, and `a golden path'
+  (AGP) \cite{agp-spec} file describing the placement of contigs. Genomer
+  automates the generation of all these files.}
+
+  \item[Integration with the command line.]{Genomer is built as a command line
+  tool built around plain text files following the Linux philosophy. This
+  allows for integration with tools such as GNU Make or git, and also to allow
+  reproducible scripting of the process of finishing a genome.}
+
+\end{description}
 
 This software was written for the command-line to use in shells such as bash or
 zsh. Command line tools are simple to automate using scripting, allowing
@@ -221,15 +246,11 @@ the sequence. Genomer allows this by organising a genome project as follows:
 
 \begin{enumerate}
 
-\item{Sequencing reads are assembled into contigs with a high degree of
-confidence. This is done by using various assembly software and testing
-different software parameters \cite{earl2011}. The generated contigs are then
-compared between assembly replicates using nucmer from the Mummer software
-package \cite{kurtz2004}. The FASTA file of contig sequences are then added to
-the Genomer project.}
-
-\item{The assembled contigs are then annotated and the GFF3 file of contig
-annotations is added to the Genomer project.}
+\item{A genomer project is organised around a set of already assembled and
+annotated contigs. For example we assemble our contigs using the A5 pipeline
+\cite{tritt2012} and and then subsequently annotate them using the Integrated
+Microbial Genomes resource \cite{markowitz2006}. We then use these contigs as a
+starting point to build a draft genome sequence in genomer.}
 
 \item{A genome scaffold is then created using the scaffolder file format
 \cite{barton2012}. This specifies the order and orientation of contigs in the
@@ -250,24 +271,7 @@ correspondingly update the annotation coordinates for the scaffold.}
 
 \end{enumerate}
   
-This allows the scaffold file to be continuously improved even when already
-annotated. For instance, additional PCR sequences can be used to close gaps and
-improve the genome sequence, without requiring reannotation or manually
-updating all annotation coordinates.
-
 \subsection*{Second Use Case: Preparing files for submission to GenBank}
-
-Generating a usable genome sequence requires sequencing, assembly of reads, and
-annotation. A further step is also required: preparation of genomic files for
-deposition in a database. An example is the GenBank database which requires the
-genome annotations to be prepared in a custom table format. Additional files
-are also required when the genome assembly is incomplete: a FASTA file
-containing the individual contig sequences and `a golden path' (AGP)
-\cite{agp-spec} file which describes the placement and direction of constituent
-contigs in the draft genome sequence. The requirements to generate these
-specific files can be time-consuming to complete and difficult to understand
-for researchers new to field. We used Genomer extensively during our own genome
-projects to simplify and automate this process.
 
 The genomer-view-plugin can be used to generate for submission to GenBank:
 assembled FASTA, contig FASTA, annotation tables, and scaffold layout in AGP.
