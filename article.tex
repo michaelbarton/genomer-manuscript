@@ -71,9 +71,9 @@ genome sequence to a database. Genomer can format a genome scaffold into the
 common files required for submission to GenBank. This software also simplifies
 updating a genome scaffold by allowing a human-readable YAML format file to be
 edited instead of large sequence files. Genomer is written as a command line
-tool and is an effort to make the manual, and increasingly common, process of
-genome scaffolding more robust and reproducible. Extensive documentation and
-video tutorials are available at http://next.gs.
+tool and is an effort to make the manual process of genome scaffolding more
+robust and reproducible. Extensive documentation and video tutorials are
+available at http://next.gs.
 
 \section*{Introduction}
 
@@ -89,9 +89,9 @@ however produce imperfect results and remains the subject of active research
 sequence and corresponding annotations may still improve upon the results of
 automated methods.
 
-Manually editing a genome sequence or annotation is a non-trivial problem
-requiring effort on a researcher's part. The large size of FASTA sequence files
-or general feature format (GFF) annotation files makes changing these in a text
+Manually editing a genome sequence or annotation is non-trivial and requires
+effort on a researcher's part. The large size of FASTA sequence files or
+general feature format (GFF) annotation files makes changing these in a text
 editor difficult. Tasks such as organising project files, adding additional
 sequences to an assembly, updating incorrect annotations or preparing files for
 database deposition all divert effort from the main goal of analysing a genome.
@@ -191,14 +191,14 @@ genome. Genomer provides the following functionality to facilitate this:
 \end{description}
 
 Genomer is written as a command-line tool for use in shells such as bash or
-zsh. The advantage of command-line tools over GUI-based tools, is that the former
-are simpler to automate and allow the sharing of steps with other researchers
-working on related projects. For instance, during our microbial genome project
-we automated Genomer using GNU Make build files, allowing the finishing steps
-to be repeated automatically using the \verb+make+ command. Genomer may
-therefore be of particular interest to bioinformaticians coordinating in groups
-on the same genome project and those who prefer automated approaches and
-scripting on the command line.
+zsh. The advantage of command-line tools over GUI-based tools, is that the
+former are simpler to automate and allow the sharing of scripts with other
+researchers working on related projects. For instance, during our microbial
+genome project we automated Genomer using GNU Make build files, allowing the
+finishing steps to be repeated automatically using the \verb+make+ command.
+Genomer may therefore be of particular interest to bioinformaticians
+coordinating in groups on the same genome project and those who prefer
+automated approaches and scripting on the command line.
 
 As Genomer uses plain text files to manage the draft genome sequence it is easy
 to store versions of the project using a revision control system such as git
@@ -260,16 +260,16 @@ case.
 \subsection*{Limitations}
 
 Genomer was written to satisfy our needs for building and finishing megabase
-sized draft genomes where assembly of the draft sequence takes place in memory.
-This makes Genomer well-suited for microbial genome projects where
-approximately 99\% of microbial genomes sequenced to date are less than 10MBp.
-The Assembly of very large sequences may however limit performance when the
-size of the sequence exceeds available. We however anticipate that genome sizes
+sized draft genomes where assembly of the sequence takes place in memory. This
+makes Genomer well-suited for microbial genome projects where approximately
+99\% of microbial genomes sequenced to date are less than 10MBp. The assembly
+of very large sequences may however limit performance when the size of the
+sequence exceeds available RAM space. We however anticipate that genome sizes
 of even 3GBp will fit in the memory of a modern laptop or desktop computer.
 
 One features of Genomer is the simplification of generating the annotation
 table file required for submission to GenBank. Genomer requires only a GFF3
-file containing gene-type entries be required. Genomer is able to generate the
+file containing gene-type entries. Genomer is then able to generate the
 additional encoded protein features from these entries. One caveat to this
 however is that the assumption there is no intron/exon structure and therefore
 users wishing to submit annotations with alternative splicing cannot take
