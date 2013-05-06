@@ -65,10 +65,10 @@ $\ast$ E-mail: mail@michaelbarton.me.uk
 The increasing accessibility and reduced costs of sequencing has made genome
 analysis accessible to more and more researchers. Yet there remains a steep
 learning curve in the subsequent computational steps required to process raw
-sequence reads into a database-deposited genome sequence. Here we describe
-``Genomer,'' a tool to simplify the manual tasks of finishing and uploading a
-genome sequence to a database. Genomer can format a genome scaffold into the
-common files required for submission to GenBank. This software also simplifies
+reads into a database-deposited genome sequence. Here we describe ``Genomer,''
+a tool to simplify the manual tasks of finishing and uploading a genome
+sequence to a database. Genomer can format a genome scaffold into the common
+files required for submission to GenBank. This software also simplifies
 updating a genome scaffold by allowing a human-readable YAML format file to be
 edited instead of large sequence files. Genomer is written as a command line
 tool and is an effort to make the manual process of genome scaffolding more
@@ -81,10 +81,10 @@ The decreasing costs and increasing diversity of high-throughput sequencing
 methods is making genome analysis a common method to tackle unresolved
 questions in microbiology \cite{loman2012b}. Sequencing can produce
 $10e^{6}$-$10e^{10}$ short nucleotide reads, which must be assembled into
-larger contigs which are then scaffolded into larger megabase fragments or
-complete chromosomes. These larger DNA sequences are then annotated with
-genomic features such as protein-coding genes. Each of these required steps can
-however produce imperfect results and remains the subject of active research
+larger contigs that are scaffolded into larger megabase fragments or complete
+chromosomes. These larger DNA sequences are then annotated with genomic
+features such as protein-coding genes. However each of these required steps can
+produce imperfect results and remains the subject of active research
 \cite{earl2011,quail2012,beckloff2012}. Therefore manual curation of a genome
 sequence and corresponding annotations may still improve upon the results of
 automated methods.
@@ -106,15 +106,15 @@ three lower case characters followed by one upper case character (abcD). Such
 tasks are manually laborious but simple to automate computationally. Individual
 research groups producing their own scripts for such tasks however leads to a
 repetition of effort. In contrast open-source projects can lead to a pooling of
-community effort resulting in a higher standard of software and preventing
+community effort resulting in a higher standard of software and prevents
 reinvention of the same code \cite{ince2012}.
 
 During the process of sequencing several \emph{Pseudomonas fluorescens} strains
 we developed a tool, called ``Genomer,'' to ease and simplify many of the
-common steps in our genome project. While several graphical user interface
-tools are available to work with genome projects, including G-InforBio,
-Genquire, Pile-LineGUI, Artemis and Consed \cite{tanaka2006, wilkinson2002,
-lopez2011, carver2012, gordon1998}. Genomer provides a simple command line
+common steps in our genome project. Several graphical user interface tools are
+available to work with genome projects, including G-InforBio, Genquire,
+Pile-LineGUI, Artemis and Consed \cite{tanaka2006, wilkinson2002, lopez2011,
+carver2012, gordon1998}. Genomer instead provides a simple command line
 interface which allows scriptable automation and reproducible results. We made
 this software open-source under the MIT license and here we describe its
 application.
@@ -156,7 +156,7 @@ genome. Genomer provides the following functionality to facilitate this:
   existing Scaffolder \cite{barton2012} file format for assembling draft genome
   sequences. This is format requires only the order and IDs of each contig be
   specified. This thereby simplifies the process of re-organising and trimming
-  contigs in draft genome without having to edit large nucleotide sequences
+  contigs in a draft genome without having to edit large nucleotide sequences
   manually.}
 
   \item[Mapping of annotations onto the assembled sequence.]{Genomer maps the
@@ -164,7 +164,7 @@ genome. Genomer provides the following functionality to facilitate this:
   genome sequence. This allows the scaffold file to be continuously improved
   and updated even after the contigs have been annotated. For instance,
   additional PCR sequences can be used to close gaps in the assembly and the
-  location of all annotations be correspondingly updated.}
+  location of all annotations will be correspondingly updated.}
 
   \item[Generation of files for submission to GenBank.]{Submitting a genome
   sequence to GenBank database requires generating specific files. These may
@@ -172,21 +172,21 @@ genome. Genomer provides the following functionality to facilitate this:
   file containing the individual contig sequences, and `a golden path' (AGP)
   \cite{agp-spec} file describing the placement of contigs. Genomer automates
   the generation of all these files from the scaffold file and corresponding
-  GFF3 file and removes the effort to produce these manually.}
+  GFF3 file thereby removing the effort to produce these manually.}
 
   \item[A stable interface and streamlined install process]{Genomer provides a
   plugin system built using the existing Ruby package management system:
   RubyGems and Bundler. This allows Genomer and its plugins to be automatically
   installed without requiring manual downloading and compilation by the user.
   This eliminates a common problem in bioinformatics where software may require
-  technical expertise to first compile and install before being used. Install
+  technical expertise to first compile and install before being used. Installed
   plugins may also be locked to specific versions to prevent backwards
   incompatible software changes breaking an existing workflow.}
 
   \item[Integration with the command line.]{Genomer is built as a command line
   tool around plain text files. This allows for integration with common Linux
-  tools tools such as GNU Make or git thereby allowing reproducible scripting
-  of the genome finishing process.}
+  tools tools such as GNU Make or git allowing reproducible scripting of the
+  genome finishing process.}
 
 \end{description}
 
@@ -211,8 +211,7 @@ We have released Genomer as open source software on GitHub
 \cite{genomer-github} and have prepared documentation and video tutorials at
 http://next.gs. We have used this tool extensively to simplify our own genome
 projects and believe Genomer may also be useful to others in the field. We will
-illustrate the possible application of Genomer with the following example use
-case.
+illustrate the possible application of Genomer with the following use case.
 
 \subsection*{Genomer use case}
 
@@ -230,9 +229,8 @@ case.
   unresolved gap regions in the scaffold. Paired-read sequencing or comparison
   to reference genomes can be used as a source of contig orientation and order.
   As an example, in our own genome projects we determine contig order by
-  aligning contigs to a reference genome using nucmer \cite{kurtz2004}. A
-  detailed overview of the scaffolder file format can be found on the Genomer
-  website.}
+  aligning to a reference genome using nucmer \cite{kurtz2004}. A detailed
+  overview of the scaffolder file format can be found on the Genomer website.}
 
   \item{The \verb+genomer view+ command is used to generate files of the
   assembled scaffold, such as the FASTA file of the assembly or a GFF3 file of
@@ -242,9 +240,8 @@ case.
   \item{The genome scaffold can be continuously updated through closing any
   remaining gaps. During our microbe sequencing projects we closed gaps through
   a combination of Sanger PCR and \emph{in silico} analysis. Genomer allows
-  changes in the scaffold file to automatically propagate to the required
-  changes in the generated files when the \verb+genomer view+ command is
-  rerun.}
+  changes in the scaffold file to automatically propagate to the generated
+  files when the \verb+genomer view+ command is rerun.}
 
   \item{The required files for submission to GenBank may be generated when
   researchers are satisfied with the status of their draft. These files include
@@ -252,8 +249,8 @@ case.
   scaffold file. Additional options can be used to add the required prefix to
   gene annotation IDs and begin locus ID numbering at the origin of the
   sequence. Genomer does not produce the .asn file which is submitted to
-  GenBank, but instead the files that may be used as the input to tbl2asn or
-  sequin provided by GenBank.}
+  GenBank, but instead the files that are used as the input to tbl2asn or
+  sequin tools provided by GenBank.}
 
 \end{enumerate}
 
@@ -281,7 +278,7 @@ Genomer is an open-source tool to simplify and automate repetitive and
 time-consuming tasks required when finishing a microbial genome project. This
 software is available on GitHub \cite{genomer-github} with documentation and
 video tutorials on the http://next.gs website. This tool has been useful in our
-own genome projects and we believe it will also be useful to other researchers
+own genome projects, and we believe it will also be useful to other researchers
 especially smaller research groups entering the field for the first time.
 
 % Do NOT remove this, even if you are not including acknowledgments
